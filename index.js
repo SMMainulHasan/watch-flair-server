@@ -30,6 +30,13 @@ client.connect(err => {
             })
     })
 
+    app.get('/product', (req, res) => {
+        productCollection.find({})
+        .toArray((err, documents) => {
+            res.send(documents);
+        })
+    })
+
     // client.close();
 });
 
