@@ -67,6 +67,14 @@ client.connect(err => {
         })
     })
 
+
+    app.delete('/deleteProduct/:id', (req, res)=> {
+        productCollection.deleteOne({_id: ObjectID(req.params.id)})
+        .then(result=>{
+            res.send(result.deletedCount > 0)
+        })
+    })
+
     // client.close();
 });
 app.listen(process.env.PORT || port);
