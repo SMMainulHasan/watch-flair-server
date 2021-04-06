@@ -9,6 +9,9 @@ const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.use(cors());
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*")
+  }) 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
