@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const cors = require('cors')
+const cors = require('cors');
 require('dotenv').config();
 const port = 5055;
 const MongoClient = require('mongodb').MongoClient;
@@ -8,7 +8,7 @@ const ObjectID = require('mongodb').ObjectID;
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.cxq2v.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
-app.use(cors());
+
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.header(
@@ -17,6 +17,7 @@ app.use((req, res, next) => {
     );
     next();
   }); 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
