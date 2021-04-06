@@ -33,6 +33,7 @@ client.connect(err => {
     })
 
     app.get('/product-detail/:id', (req, res) => {
+        res.setHeader("Access-Control-Allow-Origin", "*");
         const id = req.params.id;
         productCollection.find({ _id: ObjectID(id) })
             .toArray((err, document) => {
